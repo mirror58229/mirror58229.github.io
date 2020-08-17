@@ -168,6 +168,18 @@
     
         <v-list id="sub-menu" class="font-weight-medium" dense>
             
+                
+                    <v-list-item href="/categories/%E6%80%9D%E8%80%83/" link>
+                        <v-badge :value="menuHover" transition="slide-y-transition" inline content="1" >
+                            <v-hover v-model="menuHover">
+                                <v-list-item-content>
+                                    <span>思考</span>                              
+                                </v-list-item-content>                           
+                            </v-hover>
+                        </v-badge>
+                    </v-list-item>
+                
+            
         </v-list>    
     
 
@@ -267,7 +279,7 @@
         <v-row no-gutters>
           <v-col cols="auto">
             <div class="index-article-header-date font-weight-medium">
-              2020-08-13
+              2020-08-17
             </div>
           </v-col>
           <v-spacer></v-spacer>
@@ -277,24 +289,22 @@
         </v-row>
         <span>
           
-            <a class="index-article-header-category font-weight-bold" href="/2020/08/13/hello-world/">Uncategorized></a>
+            <a class="index-article-header-category font-weight-bold" href="/categories/%E6%80%9D%E8%80%83/">思考></a>
            
         </span> 
-        <a class="index-article-header-title font-weight-medium" href="/2020/08/13/hello-world/">Hello World</a>
+        <a class="index-article-header-title font-weight-medium" href="/2020/08/17/Google-Girl-Hackathon-Summary/">Google Girl Hackathon Summary</a>
       </div>
       
       <div class="index-article-content">
         
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new &quot;My New Post&quot;
-
-More info: Writing
-Run server1$ hexo ...
+          Google Girl Hackathon Summary关于比赛这次的Google Girl Hackathon全程是线上的，并且是一个长期项目的形式，所以体验其实和之前参加过那些项目类竞赛还挺像的。
+参加前抱着的目的其实是想看看笔试题的。原定的参加流程是先准备简历，然后参加一个线上的测试，再正式地进入比赛流程。包括预赛、半决赛、决赛，最后的总决赛也是要去线下答辩。预赛是给出一个Idea的文档，半决赛实现，决赛答辩。
+因为疫情的原因，取消了线上测试和现场决赛的部分，同时由个人赛瞬间变成了团体赛（猝不及防），最后和舍友Ruby、Kara一起组成了101000011（二进制的宿舍号）参加了...
         
       </div>
       
       <div class="index-article-readmore ">
-        <v-btn text href="/2020/08/13/hello-world/">Read More</v-btn>
+        <v-btn text href="/2020/08/17/Google-Girl-Hackathon-Summary/">Read More</v-btn>
       </div>
       <v-divider></v-divider>
     </article> 
