@@ -11,7 +11,7 @@
     <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) window.location.href="https://support.dmeng.net/upgrade-your-browser.html?referrer="+encodeURIComponent(window.location.href); </script>
     
     
-        <link rel="shortcut icon" href="/images/favicon.ico">
+        <link rel="shortcut icon" href="/images/avatar.jpg">
     
      
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -34,6 +34,8 @@
               
     
     
+    
+        
     
     
     
@@ -113,7 +115,7 @@
         <div class="post-toc">
             <a href="/2020/08/17/Google-Girl-Hackathon-Summary/" class="toc-header">Table of Contents</a>
             <div class="toc-content">
-                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Google-Girl-Hackathon-Summary"><span class="toc-number">1.</span> <span class="toc-text">Google Girl Hackathon Summary</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%AF%94%E8%B5%9B"><span class="toc-number">1.1.</span> <span class="toc-text">关于比赛</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%9B%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">赛题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="toc-number">1.3.</span> <span class="toc-text">实现方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">1.4.</span> <span class="toc-text">思考</span></a></li></ol></li></ol>
+                <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B3%E4%BA%8E%E6%AF%94%E8%B5%9B"><span class="toc-number">1.</span> <span class="toc-text">关于比赛</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B5%9B%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">赛题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88"><span class="toc-number">3.</span> <span class="toc-text">实现方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%9D%E8%80%83"><span class="toc-number">4.</span> <span class="toc-text">思考</span></a></li></ol>
             </div>
         </div>
     
@@ -238,20 +240,31 @@
     
     
     <div class="post-content">
-        <h1 id="Google-Girl-Hackathon-Summary"><a href="#Google-Girl-Hackathon-Summary" class="headerlink" title="Google Girl Hackathon Summary"></a>Google Girl Hackathon Summary</h1><h2 id="关于比赛"><a href="#关于比赛" class="headerlink" title="关于比赛"></a>关于比赛</h2><p>这次的Google Girl Hackathon全程是线上的，并且是一个长期项目的形式，所以体验其实和之前参加过那些项目类竞赛还挺像的。</p>
+        <h1 id="关于比赛"><a href="#关于比赛" class="headerlink" title="关于比赛"></a>关于比赛</h1><p>这次的Google Girl Hackathon全程是线上的，并且是一个长期项目的形式，所以体验其实和之前参加过那些项目类竞赛还挺像的。</p>
+<a id="more"></a>
+
 <p>参加前抱着的目的其实是想看看笔试题的。原定的参加流程是先准备简历，然后参加一个线上的测试，再正式地进入比赛流程。包括预赛、半决赛、决赛，最后的总决赛也是要去线下答辩。预赛是给出一个Idea的文档，半决赛实现，决赛答辩。</p>
 <p>因为疫情的原因，取消了线上测试和现场决赛的部分，同时由个人赛瞬间变成了团体赛（猝不及防），最后和舍友Ruby、Kara一起组成了101000011（二进制的宿舍号）参加了比赛。</p>
-<h2 id="赛题"><a href="#赛题" class="headerlink" title="赛题"></a>赛题</h2><p>这次的赛题是以COVID-19为主，要求提出一些人们面对疫情时的解决方案，从而更好地度过疫情。</p>
+<h1 id="赛题"><a href="#赛题" class="headerlink" title="赛题"></a>赛题</h1><p>这次的赛题是以COVID-19为主，要求提出一些人们面对疫情时的解决方案，从而更好地度过疫情。</p>
 <p>拿到赛题我的思考还是挺偏理工科<del>程序员</del>的，想着应该去做一些比较实际的App。我提出了三个方案（但是只记得两个了）：一个可以在线互动聊天or体感游戏交流的chatting room，主要服务那些因为不能线下聚会而缺少交流的朋友们；一个捐赠可追溯的系统，包括从捐赠方开始到受赠方及受赠用途所有的透明化，保证每个人、集体的捐赠都能被使用到该使用的用途。</p>
 <p>后者的捐赠系统其实在决赛中有两个小组做出来了，而且做的都很棒，但是感觉大家的侧重点还是不太一样。我<del>大概</del>记得她们的侧重点更倾向于受赠方和捐赠方的匹配，以及如何进行管理捐赠等等，我的方案想的更多是如何保证整个过程的透明性。</p>
 <p>后来大家经过讨论之后没有用我的方案，前一个实现难度有点大，后一个感觉市场上类似的产品（阿里巴巴的捐赠平台）已经有差不多的，很难做的出彩。</p>
-<h2 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h2><p>最终我们的方案是一个多视角的新闻浏览App：Unbiased。方案的主要目的是提供多视角的新闻资讯，总而读者在浏览同一新闻时可以看到不同视角的报导，同时这些报导有对应的情绪分析，使得读者可以有辨别地去阅读不同的新闻，从而尽可能减少单一视角新闻带来的偏见和歧视。</p>
+<h1 id="实现方案"><a href="#实现方案" class="headerlink" title="实现方案"></a>实现方案</h1><p>最终我们的方案是一个多视角的新闻浏览App：Unbiased。方案的主要目的是提供多视角的新闻资讯，总而读者在浏览同一新闻时可以看到不同视角的报导，同时这些报导有对应的情绪分析，使得读者可以有辨别地去阅读不同的新闻，从而尽可能减少单一视角新闻带来的偏见和歧视。</p>
 <p>对于每个相同内容的新闻，它们会位于同一个新闻组，新闻组打开就会有每个新闻对应的标题、情绪等，点进去会展示新闻的具体内容，包括报导的媒体、新闻原来的内容、新闻摘要、评论等等。</p>
-<p><img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E4%B8%BB%E9%A1%B5.png" alt="im1"><br><img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E4%B8%BB%E9%A1%B5%E5%B1%95%E5%BC%80.png" alt="im2"><br><img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E6%96%B0%E9%97%BB%E9%A1%B5.png" alt="im3"><br><img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E6%88%91%E7%9A%84.png" alt="im4"><br><img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E6%B3%A8%E5%86%8C.png" alt="im5"></p>
+<img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E4%B8%BB%E9%A1%B5.png" alt="im1" style="zoom:50%;" />
+<img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E4%B8%BB%E9%A1%B5%E5%B1%95%E5%BC%80.png" alt="im2" style="zoom:50%;" />
+<img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E6%96%B0%E9%97%BB%E9%A1%B5.png" alt="im3" style="zoom:50%;" />
+<img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E6%88%91%E7%9A%84.png" alt="im4" style="zoom:50%;" />
+<img src="https://github.com/rubychen0611/Unbiased/raw/master/images/%E6%B3%A8%E5%86%8C.png" alt="im5" style="zoom:50%;" />
+
+
+
+
+
 <p>方案是Ruby提出的，我主要负责<del>划水</del>（写了一个新闻详情页面），其他都是Ruby写的（惭愧）</p>
 <p>附上demo Link：<a target="_blank" rel="noopener" href="https://youtu.be/oCnLdIDYHfg">https://youtu.be/oCnLdIDYHfg</a></p>
-<p>最后拿了1st 和 most popular prize，参赛的小姐姐们居然很喜欢我们作品，有点意外哈哈😄</p>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>因为整个方案不是我设计的，最终也只写了一点界面，所以技术上的没啥好说的，只能讲一点对产品和比赛思考。</p>
+<p>最后拿了⭐1st 和⭐ most popular prize，参赛的小姐姐们居然很喜欢我们作品，有点意外哈哈😄</p>
+<h1 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h1><p>因为整个方案不是我设计的，最终也只写了一点界面，所以技术上的没啥好说的，只能讲一点对产品和比赛思考。</p>
 <ol>
 <li>在做一个产品时，思考需要creative一点，但同时也要考虑实现的难度和实际上做出来的需要。我在很多情况下对于产品的思考还是过于偏针对某个现象，而不是考虑这个现象环节上的使用者是否真的需要，以及实际的操作难度。</li>
 <li>虽然比赛是有一个赛题范围，但是产品的范围不应该被比赛限制。评分点有一个部分就是sustainable可持续性。比如如果过了这个疫情，你的产品是否还能继续发生作用呢？这样的扩展性不一定是技术本身带来的，也应该是做之前应该考虑的。</li>
@@ -282,6 +295,15 @@
 </v-card>
 
 
+
+    <v-card class="comment-card elevation-2">
+        <v-tabs v-model="commentTab"  id="comment-tabs" @change="TabChange" active-class="active-comment-tab">
+            
+        </v-tabs>
+        <v-tabs-items v-model="commentTab">
+            
+        </v-tabs-items>
+    </v-card>
 
         
                             <div id="mobile-footer" class="d-block d-md-none">
@@ -322,6 +344,8 @@
 
 
 
+
+    
 
 </body>
 </html>
