@@ -20,30 +20,36 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Stay Moved.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Mirror&#39;s live">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="名称：U-Net: Convolutional Networks for Biomedical Image Segmentation 论文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1505.04597">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNet学习笔记">
+<meta property="og:url" content="http://yoursite.com/2020/08/21/UNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Mirror&#39;s live">
-<meta property="og:description" content="Stay Moved.">
+<meta property="og:description" content="名称：U-Net: Convolutional Networks for Biomedical Image Segmentation 论文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1505.04597">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/7151457/0en4izzqsi.jpeg?imageView2/2/w/1620">
+<meta property="article:published_time" content="2020-08-21T11:06:01.000Z">
+<meta property="article:modified_time" content="2020-08-21T11:18:40.609Z">
 <meta property="article:author" content="Mirror">
+<meta property="article:tag" content="深度学习">
+<meta property="article:tag" content="计算机视觉">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ask.qcloudimg.com/http-save/7151457/0en4izzqsi.jpeg?imageView2/2/w/1620">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/08/21/UNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Mirror's live</title>
+  <title>UNet学习笔记 | Mirror's live</title>
   
 
 
@@ -162,9 +168,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -180,10 +187,9 @@
       <meta itemprop="name" content="Mirror's live">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/21/UNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">UNet学习笔记</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          UNet学习笔记
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -213,6 +219,13 @@
               <span class="post-meta-item-text">阅读次数：</span>
               <span class="leancloud-visitors-count"></span>
             </span>
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
   <span class="post-meta-item">
     
@@ -237,139 +250,72 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>名称：U-Net: Convolutional Networks for Biomedical Image Segmentation</p>
+        <p>名称：U-Net: Convolutional Networks for Biomedical Image Segmentation</p>
 <p>论文链接：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/1505.04597">https://arxiv.org/abs/1505.04597</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/21/UNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<a id="more"></a>
+
+
+<h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p>特点：U型网络 + Skip Connection跳层连接</p>
+<p> <img src="https://ask.qcloudimg.com/http-save/7151457/0en4izzqsi.jpeg?imageView2/2/w/1620" alt="image-20200819192948644"></p>
+<p>左侧为下采样encoder，右侧为上采样decoder</p>
+<p>灰色为<strong>Skip Connection</strong>：在上采样过程中融合下采样的feature map；将feature map通道叠加concat，concat可以通过crop或padding来匹配大小，UNet使用的是将小的feature map进行<strong>padding</strong> 0。</p>
+<h2 id="Double-Conv模块"><a href="#Double-Conv模块" class="headerlink" title="Double Conv模块"></a>Double Conv模块</h2><p>连续两次的卷积操作，每次3*3的unpadded卷积完接一个ReLU</p>
+<p>使用BN操作来保持数据的分布</p>
+<h2 id="Down模块"><a href="#Down模块" class="headerlink" title="Down模块"></a>Down模块</h2><p>下采样模块，有4次下采样，Double Conv模块后接2*2max pooling stride=2</p>
+<h2 id="Up模块"><a href="#Up模块" class="headerlink" title="Up模块"></a>Up模块</h2><p>上采样模块，有4次上采样和特征融合的过程。</p>
+<p>上采样过程包括2*2上卷积采样，特征融合，Double Conv，使用双线性插值和反卷积进行上采样。</p>
+<p>特征融合过程先对小的feature map进行padding，然后concat</p>
+<p>前向过程中，使用x1接收<strong>上采样</strong>数据，x2接收<strong>特征融合</strong>数据。</p>
+<h2 id="Out-Conv模块"><a href="#Out-Conv模块" class="headerlink" title="Out Conv模块"></a>Out Conv模块</h2><p>使用1*1卷积来映射结果类别</p>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><h2 id="加载数据"><a href="#加载数据" class="headerlink" title="加载数据"></a>加载数据</h2><p>加载数据的伪代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ================================================================== #</span></span><br><span class="line"><span class="comment">#                Input pipeline for custom dataset                 #</span></span><br><span class="line"><span class="comment"># ================================================================== #</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You should build your custom dataset as below.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CustomDataset</span>(<span class="params">torch.utils.data.Dataset</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># TODO</span></span><br><span class="line">        <span class="comment"># 1. Initialize file paths or a list of file names. </span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, index</span>):</span></span><br><span class="line">        <span class="comment"># TODO</span></span><br><span class="line">        <span class="comment"># 1. Read one data from file (e.g. using numpy.fromfile, PIL.Image.open).</span></span><br><span class="line">        <span class="comment"># 2. Preprocess the data (e.g. torchvision.Transform).</span></span><br><span class="line">        <span class="comment"># 3. Return a data pair (e.g. image and label).</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="comment"># You should change 0 to the total size of your dataset.</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> </span><br><span class="line"></span><br><span class="line"><span class="comment"># You can then use the prebuilt data loader. </span></span><br><span class="line">custom_dataset = CustomDataset()</span><br><span class="line">train_loader = torch.utils.data.DataLoader(dataset=custom_dataset,</span><br><span class="line">                                           batch_size=<span class="number">64</span>, </span><br><span class="line">                                           shuffle=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+
+<p>首先在<code>__init__</code>函数中指定目录和文件，然后在<code>__getitem__</code>函数中读取data，预处理data，返回data pair，<code>___len__</code>返回数据集大小。</p>
+<p>然后创建Dataset类，通过DataLoader加载dataset，加载时选择batch_size和是否打乱。</p>
+<h2 id="修改网络"><a href="#修改网络" class="headerlink" title="修改网络"></a>修改网络</h2><p>原网络的输出的尺寸会小于输入，因此对网络进行微调。</p>
+<p>padding设为1，变成same padding</p>
+<p>训练过程就是：<strong>加载数据集 =&gt; 定义优化算法 =&gt; 定义loss =&gt; 训练 =&gt; 记录最小的loss和模型参数</strong></p>
+<p>同时记得<strong>设置device、加载网络、拷贝数据和网络</strong></p>
+<h2 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h2><p>选择设备 =&gt; 加载网络结构 =&gt; 加载设备 =&gt; 加载模型 =&gt; 设置评估模式 =&gt; 设置图片路径</p>
+<p>图片处理成单通道tensor =&gt; 获取预测结果=&gt; 处理预测结果</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://cuijiahua.com/blog/2019/12/dl-15.html">https://cuijiahua.com/blog/2019/12/dl-15.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1633363">https://cloud.tencent.com/developer/article/1633363</a></p>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89/" rel="tag"># 计算机视觉</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/Google-Girl-Hackathon-Summary/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Mirror">
-      <meta itemprop="description" content="Stay Moved.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Mirror's live">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/17/Google-Girl-Hackathon-Summary/" class="post-title-link" itemprop="url">Google Girl Hackathon Summary</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-17 18:33:01" itemprop="dateCreated datePublished" datetime="2020-08-17T18:33:01+08:00">2020-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-08-21 19:16:51" itemprop="dateModified" datetime="2020-08-21T19:16:51+08:00">2020-08-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%80%9D%E8%80%83/" itemprop="url" rel="index"><span itemprop="name">思考</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2020/08/17/Google-Girl-Hackathon-Summary/" class="post-meta-item leancloud_visitors" data-flag-title="Google Girl Hackathon Summary" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/08/17/Google-Girl-Hackathon-Summary/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/17/Google-Girl-Hackathon-Summary/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="关于比赛"><a href="#关于比赛" class="headerlink" title="关于比赛"></a>关于比赛</h1><p>这次的Google Girl Hackathon全程是线上的，并且是一个长期项目的形式，所以体验其实和之前参加过那些项目类竞赛还挺像的。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/17/Google-Girl-Hackathon-Summary/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/08/17/Google-Girl-Hackathon-Summary/" rel="prev" title="Google Girl Hackathon Summary">
+      <i class="fa fa-chevron-left"></i> Google Girl Hackathon Summary
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
 
           </div>
           
+    <div class="comments" id="valine-comments"></div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -416,6 +362,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">网络结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Double-Conv%E6%A8%A1%E5%9D%97"><span class="nav-number">1.1.</span> <span class="nav-text">Double Conv模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Down%E6%A8%A1%E5%9D%97"><span class="nav-number">1.2.</span> <span class="nav-text">Down模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Up%E6%A8%A1%E5%9D%97"><span class="nav-number">1.3.</span> <span class="nav-text">Up模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Out-Conv%E6%A8%A1%E5%9D%97"><span class="nav-number">1.4.</span> <span class="nav-text">Out Conv模块</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="nav-number">2.</span> <span class="nav-text">模型训练</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E6%95%B0%E6%8D%AE"><span class="nav-number">2.1.</span> <span class="nav-text">加载数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%BD%91%E7%BB%9C"><span class="nav-number">2.2.</span> <span class="nav-text">修改网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B"><span class="nav-number">2.3.</span> <span class="nav-text">预测</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
