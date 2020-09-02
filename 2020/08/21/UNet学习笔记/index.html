@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Mirror&#39;s live">
 <meta property="og:description" content="名称：U-Net: Convolutional Networks for Biomedical Image Segmentation 论文链接：https:&#x2F;&#x2F;arxiv.org&#x2F;abs&#x2F;1505.04597">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://ask.qcloudimg.com/http-save/7151457/0en4izzqsi.jpeg?imageView2/2/w/1620">
+<meta property="og:image" content="http://yoursite.com/.com//%5CUNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cdl-15-1-1.png">
 <meta property="article:published_time" content="2020-08-21T11:06:01.000Z">
-<meta property="article:modified_time" content="2020-08-21T11:18:40.609Z">
+<meta property="article:modified_time" content="2020-09-02T07:41:46.998Z">
 <meta property="article:author" content="Mirror">
 <meta property="article:tag" content="深度学习">
 <meta property="article:tag" content="计算机视觉">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ask.qcloudimg.com/http-save/7151457/0en4izzqsi.jpeg?imageView2/2/w/1620">
+<meta name="twitter:image" content="http://yoursite.com/.com//%5CUNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cdl-15-1-1.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/08/21/UNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
 
@@ -202,10 +202,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-08-21 19:06:01 / 修改时间：19:18:40" itemprop="dateCreated datePublished" datetime="2020-08-21T19:06:01+08:00">2020-08-21</time>
+              <time title="创建时间：2020-08-21 19:06:01" itemprop="dateCreated datePublished" datetime="2020-08-21T19:06:01+08:00">2020-08-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-09-02 15:41:46" itemprop="dateModified" datetime="2020-09-02T15:41:46+08:00">2020-09-02</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -261,7 +267,7 @@
 
 
 <h1 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h1><p>特点：U型网络 + Skip Connection跳层连接</p>
-<p> <img src="https://ask.qcloudimg.com/http-save/7151457/0en4izzqsi.jpeg?imageView2/2/w/1620" alt="image-20200819192948644"></p>
+<p><img src="/.com//%5CUNet%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%5Cdl-15-1-1.png" alt="dl-15-1-1"></p>
 <p>左侧为下采样encoder，右侧为上采样decoder</p>
 <p>灰色为<strong>Skip Connection</strong>：在上采样过程中融合下采样的feature map；将feature map通道叠加concat，concat可以通过crop或padding来匹配大小，UNet使用的是将小的feature map进行<strong>padding</strong> 0。</p>
 <h2 id="Double-Conv模块"><a href="#Double-Conv模块" class="headerlink" title="Double Conv模块"></a>Double Conv模块</h2><p>连续两次的卷积操作，每次3*3的unpadded卷积完接一个ReLU</p>
