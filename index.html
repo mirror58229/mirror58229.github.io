@@ -173,6 +173,107 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/26/OpenDR-Renderer-Example/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Mirror">
+      <meta itemprop="description" content="Stay Moved.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mirror's live">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/26/OpenDR-Renderer-Example/" class="post-title-link" itemprop="url">OpenDR Renderer Example</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-11-26 15:32:12 / 修改时间：15:58:27" itemprop="dateCreated datePublished" datetime="2020-11-26T15:32:12+08:00">2020-11-26</time>
+            </span>
+
+          
+            <span id="/2020/11/26/OpenDR-Renderer-Example/" class="post-meta-item leancloud_visitors" data-flag-title="OpenDR Renderer Example" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/11/26/OpenDR-Renderer-Example/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/11/26/OpenDR-Renderer-Example/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>1、引入所需要的package，同时新建一个ColoredRenderer()对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> opendr.renderer <span class="keyword">import</span> ColoredRenderer</span><br><span class="line">rn = ColoredRenderer()</span><br></pre></td></tr></table></figure>
+
+<p>2、加载几何结构，实例中使用了一个earth。加载的几何结构包括mesh的vertices和faces，以及反射率albedo。分别对应v, f, vc。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> opendr.util_tests <span class="keyword">import</span> get_earthmesh</span><br><span class="line"><span class="keyword">import</span> chumpy <span class="keyword">as</span> ch</span><br><span class="line">m = get_earthmesh(trans=ch.array([<span class="number">0</span>,<span class="number">0</span>,<span class="number">4</span>]), rotation=ch.zeros(<span class="number">3</span>))</span><br><span class="line">v = ch.array(m.v)</span><br><span class="line">vc = ch.array(m.vc) <span class="comment"># albedo</span></span><br><span class="line">f = m.f</span><br></pre></td></tr></table></figure>
+
+<p>3、设置相机参数，同时把renderer的相关参数初始化。</p>
+<p>相机参数camera包括内参数和外参数，外参数包括：v-刚体坐标、rt-旋转矩阵1*3、t-平移向量1*3，内参数包括：f-焦距1*2，c-中点坐标1*2，k-畸变参数1*5。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> opendr.camera <span class="keyword">import</span> ProjectPoints</span><br><span class="line">w, h = (<span class="number">320</span>, <span class="number">240</span>)    <span class="comment"># 渲染后的图片大小</span></span><br><span class="line">rn.camera = ProjectPoints(v=v, rt=ch.zeros(<span class="number">3</span>), t=ch.zeros(<span class="number">3</span>), </span><br><span class="line">    f=ch.array([w,w])/<span class="number">2.</span>,c=ch.array([w,h])/<span class="number">2.</span>, k=ch.zeros(<span class="number">5</span>))</span><br><span class="line">rn.frustum = &#123;<span class="string">&#x27;near&#x27;</span>: <span class="number">1.</span>, <span class="string">&#x27;far&#x27;</span>: <span class="number">10.</span>, <span class="string">&#x27;width&#x27;</span>: w, <span class="string">&#x27;height&#x27;</span>: h&#125;</span><br><span class="line">rn.v = v</span><br><span class="line">rn.f = f</span><br><span class="line">rn.bgcolor = ch.zeros(<span class="number">3</span>)    <span class="comment"># 背景色</span></span><br></pre></td></tr></table></figure>
+
+<p>4、建立一个V*3的数组设置每个顶点的颜色，包括albedo、灯光的位置和颜色。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> opendr.lighting <span class="keyword">import</span> LambertianPointLight</span><br><span class="line">rn.vc = LambertianPointLight(</span><br><span class="line">    f=f,</span><br><span class="line">    v=v,</span><br><span class="line">    num_verts=len(v),</span><br><span class="line">    light_pos=ch.array([<span class="number">-1000</span>,<span class="number">-1000</span>,<span class="number">-1000</span>]),</span><br><span class="line">    vc=vc,</span><br><span class="line">    light_color=ch.array([<span class="number">1.</span>, <span class="number">1.</span>, <span class="number">1.</span>]))</span><br></pre></td></tr></table></figure>
+
+<p>5、结果保存在rn.r中，绘制结果</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">plt.ion()</span><br><span class="line">plt.imshow(rn.r)</span><br><span class="line">plt.draw()</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="noopener" href="https://github.com/mattloper/opendr/wiki/Simple-Rendering">Simple Rendering · mattloper/opendr Wiki (github.com)</a></p>
+<p><a target="_blank" rel="noopener" href="https://52zju.cn/?p=454">三维重建(2): 渲染工具OpenDR论文和源码部分阅读-2 – guodong’s blog (52zju.cn)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/11/17/Bazel%E5%AE%89%E8%A3%85%E6%8C%87%E5%AF%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -732,7 +833,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
